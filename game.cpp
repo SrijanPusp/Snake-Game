@@ -10,6 +10,10 @@ const char UP = 'U';
 const char DOWN = 'D';
 const char LEFT = 'L';
 const char RIGHT = 'R';
+int left_limit;
+int right_limit;
+int top_limit;
+int bottom_limit;
 
 int consoleWidth, consoleHeight;
 
@@ -21,7 +25,12 @@ void screen_init()
   GetConsoleScreenBufferInfo(hConsole, &csbi);
   consoleHeight = csbi.srWindow.Bottom - csbi.srWindow.Top;
   consoleWidth = csbi.srWindow.Right - csbi.srWindow.Left;
+  left_limit = csbi.srWindow.Left;
+  right_limit = csbi.srWindow.Right;
+  top_limit = csbi.srWindow.Top;
+  bottom_limit = csbi.srWindow.Bottom;
 }
+
 
 struct point
 {
@@ -102,6 +111,11 @@ class Snake
         if(body[0].xCoordinate == body[i].xCoordinate && body[0].yCoordinate == body[i].yCoordinate)
         {
           return false;
+        }
+        if (body[0].xCoordinate < left_limit || body[0].xCoordinate >= right_limit ||
+            body[0].yCoordinate < top_limit || body[0].yCoordinate >= bottom_limit) 
+        {
+              return false;
         }
       }
       //eat and grow
