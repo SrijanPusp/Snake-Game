@@ -1,20 +1,9 @@
-#include <bits/stdc++.h>
-#include <conio.h>
-#include <windows.h>
+#include "snake_game.h"
 
-using namespace std;
-
-#define Max_Length 1000
-
-const char UP = 'U';
-const char DOWN = 'D';
-const char LEFT = 'L';
-const char RIGHT = 'R';
 int left_limit;
 int right_limit;
 int top_limit;
 int bottom_limit;
-
 int consoleWidth, consoleHeight;
 
 // Methods from windows.h
