@@ -108,15 +108,21 @@ class Snake
       //game over
       for(int i=1; i<length; i++)  //if snake bites itself
       {
+        // First check boundary collision
+        if (body[0].xCoordinate < left_limit || body[0].xCoordinate >= right_limit ||
+          body[0].yCoordinate < top_limit || body[0].yCoordinate >= bottom_limit) 
+        {
+          return false;
+        }
+
+        // Then check self collision
+        for(int i=1; i<length; i++)
+        {
         if(body[0].xCoordinate == body[i].xCoordinate && body[0].yCoordinate == body[i].yCoordinate)
         {
           return false;
         }
-        if (body[0].xCoordinate < left_limit || body[0].xCoordinate >= right_limit ||       //if goes through wall
-            body[0].yCoordinate < top_limit || body[0].yCoordinate >= bottom_limit) 
-        {
-              return false;
-        }
+      }
       }
       //eat and grow
       if(food.xCoordinate == body[0].xCoordinate && food.yCoordinate == body[0].yCoordinate)   //if eats food, it grows   
